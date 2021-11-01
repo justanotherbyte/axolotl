@@ -37,6 +37,9 @@ async def take_screenshot(url: str, delay: Union[int, float] = 0.0):
             image = await f.read()
     finally:
         lock.release()
+
+    await page.close()
+    await browser.close()
     
     if os.path.exists("screenshotResult.png"):
         os.remove("screenshotResult.png")
